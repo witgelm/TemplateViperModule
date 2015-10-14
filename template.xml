@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="3"
+    name="Kotlin Viper"
+    description="Creates new viper module."
+    minApi="7"
+    minBuildApi="8">
+
+    <category value="Viper Module" />
+
+    <dependency name="android-support-v4" revision="8" />
+
+    <parameter
+        id="moduleName"
+        name="Module Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="defaultModule"
+        help="The name of the module to create" />
+
+    <parameter
+        id="parentView"
+        name="parent View"
+        type="enum"
+        default="activity"
+        help="Select parent for view class." >
+        <option id="activity">Activity</option>
+        <option id="fragment">Fragment</option>
+    </parameter>        
+
+    <parameter
+        id="includeLayout"
+        name="Create layout to view component"
+        type="boolean"
+        default="true"
+        help="Create layout to view component" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        visibility="includeLayout"
+        default="view_main"
+        suggest="view_${classToResource(moduleName)}"
+        help="The name of the layout to create" />
+
+    <parameter
+        id="isRouter"
+        name="Create router component"
+        type="boolean"
+        default="true"
+        help="Generate a router component for the module" />
+
+    <parameter
+        id="isInteractor"
+        name="Create interactor component"
+        type="boolean"
+        default="true"
+        help="Generate a interactor component for the module" />
+    
+	
+    <thumbs>
+        <thumb>template_blank_fragment.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
